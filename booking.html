@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - UNCG EV’s</title>
+    <meta content="Go Chariot" property="og:title" />
+    <meta content="A reimagined bus tracker for UNCG's Spartan Chariots" property="og:description" />
+    <meta content="https://gochariot.com" property="og:url" />
+    <meta content="#00008B" data-react-helmet="true" name="theme-color" />
+    
+    <!-- Google Fonts & Styles -->
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@700' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@500' rel='stylesheet'>
+    <link rel="stylesheet" href="booking-style.css">
+    
+    <!-- Scripts -->
+    <script src='booking.js' defer></script>
+    <link rel="icon" href="">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-container">
+                <a href="index.html">
+                    <img id="logo" src="images/uncg_hrzntl-svg.png" alt="UNCG Logo">
+                </a>
+                <h2 class="site-title">UNCG EV’s</h2>
+            </div>
+            <hr class="gray">
+        </header>
+        
+
+        <!-- Navbar & Splash Image -->
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="booking.html">My Booking</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="hero-content">
+            <h2>My Bookings</h2>
+            <table id="bookingTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Booking entries will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </main>
+        
+        
+    </div>
+
+    <footer>
+        <p>&copy; UNCG EV’s</p>
+    </footer>
+</body>
+
+</html>
