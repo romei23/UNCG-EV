@@ -90,9 +90,9 @@ footer {
     background-color: #0f2044;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 10px ;
     width: 100%;
-    position: relative;
+    position: absolute;
     bottom: 0;
 }
 
@@ -129,6 +129,44 @@ footer {
     cursor: pointer;
     font-size: 14px;
     border-radius: 5px;
+}
+
+#bookStationBtn {
+    background-color: #00529b; /* UNCG navy blue */
+    color: #ffcc47; /* UNCG gold for text */
+    border: 2px solid #ffcc47; /* Gold border for emphasis */
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#bookStationBtn:hover {
+    background-color: #00529b; /* A darker shade of blue for hover */
+    color: white;
+}
+
+
+button {
+    background-color: #00529b; /* UNCG Spartan blue; adjust if you have a specific blue from UNCG */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+button:hover {
+    background-color: #00529b; /* A darker shade for hover effect */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffcc47; /* UNCG gold for focus outline */
 }
 
 .edit-btn {

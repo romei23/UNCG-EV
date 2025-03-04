@@ -1,74 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - UNCG EV’s</title>
-    <meta content="Go Chariot" property="og:title" />
-    <meta content="A reimagined bus tracker for UNCG's Spartan Chariots" property="og:description" />
-    <meta content="https://gochariot.com" property="og:url" />
-    <meta content="#00008B" data-react-helmet="true" name="theme-color" />
-    
-    <!-- Google Fonts & Styles -->
-    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@700' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@500' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@700;500&display=swap' rel='stylesheet'>
     <link rel="stylesheet" href="booking-style.css">
-    
-    <!-- Scripts -->
-    <script src='booking.js' defer></script>
-    <link rel="icon" href="">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="header-container">
-                <a href="index.html">
-                    <img id="logo" src="images/uncg_hrzntl-svg.png" alt="UNCG Logo">
-                </a>
-                <h2 class="site-title">UNCG EV’s</h2>
-            </div>
-            <hr class="gray">
-        </header>
-        
-
-        <!-- Navbar & Splash Image -->
-        <nav>
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="map.html">MAP</a></li>
-                <li><a href="booking.html">My Booking</a></li>
-            </ul>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="hero-content">
-            <h2>My Bookings</h2>
-            <table id="bookingTable">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Location</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Booking entries will be dynamically inserted here -->
-                </tbody>
-            </table>
-        </main>
-        
-        
-    </div>
-
+<div class="container">
+    <header>
+        <img id="logo" src="images/uncg_hrzntl-svg.png" alt="UNCG Logo">
+        <h2 class="site-title">UNCG EV’s</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="map.html">MAP</a></li>
+            <li><a href="booking.html">My Booking</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>My Bookings</h2>
+        <button id="bookStationBtn" onclick="toggleBookingForm()">Book a Station</button>
+        <div id="bookingForm" style="display:none;">
+            <label for="stationSelect">Select Station:</label>
+            <select id="stationSelect">
+                <!-- Station options will be dynamically populated here -->
+                <option value="1">McIver Charger 1</option>
+                <option value="1">McIver Charger 2</option>
+                <option value="1">McIver Charger 3</option>
+                <option value="1">McIver Charger 4</option>
+                <option value="1">Oakland Charger 1</option>
+                <option value="1">Oakland Charger 2</option>
+                <option value="1">Oakland Charger 3</option>
+                <option value="1">Oakland Charger 4</option>
+                <option value="1">Nursing Charger 1</option>
+                <option value="1">Nursing Charger 2</option>
+                <option value="1">Nursing Charger 3</option>
+                <option value="1">Nursing Charger 4</option>
+            </select>
+            <label for="bookingDate">Select Date and Time:</label>
+            <input type="text" id="bookingDate">
+            <button id="bookStationBtn" onclick="submitBooking()">Submit Booking</button>
+        </div>
+        <table id="bookingTable">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Booking entries will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </main>
     <footer>
         <p>&copy; UNCG EV’s</p>
     </footer>
-</body>
+</div>
+<script>
+    flatpickr("#bookingDate", {
+        enableTime: true,
+        noCalendar: false,
+        dateFormat: "Y-m-d h:i K",
+        time_24hr: false,
+        minuteIncrement: 15
+    });
 
+    function toggleBookingForm() {
+        var form = document.getElementById('bookingForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function submitBooking() {
+        // Implement the actual booking logic here
+        alert('Booking submitted!');
+    }
+</script>
+</body>
 </html>
