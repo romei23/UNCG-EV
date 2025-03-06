@@ -73,5 +73,5 @@
 
 .message.received {
     align-self: flex-start; /* Align received messages to the left */
-    background-color: #f8d7da;
+    background-color: #d1e7f0;
 }
