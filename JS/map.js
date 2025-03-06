@@ -19,6 +19,7 @@ function openDirections(lat, lng) {
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, '_blank');
 }
 
+// Add markers for each charging station
 chargers.forEach(station => {
     L.marker([station.lat, station.lng])
         .addTo(map)
@@ -29,5 +30,5 @@ chargers.forEach(station => {
                 style="margin-top:5px; padding:5px 10px; background:#0f2044; color:white; border:none; cursor:pointer;">
                 Get Directions
             </button>
-        `);
+        `); // Popup content with station name and a button to get directions
 });

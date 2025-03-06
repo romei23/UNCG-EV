@@ -129,7 +129,7 @@ nav ul li a:hover {
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: 50vh; /* Match the height of the map */
+    height: 50vh;
     border: 1px solid #ccc;
     border-radius: 10px;
     margin-left: 20px;

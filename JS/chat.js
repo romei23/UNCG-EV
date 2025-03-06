@@ -7,6 +7,7 @@ socket.addEventListener('open', function (event) {
 socket.addEventListener('message', async function (event) {
     const messages = document.getElementById('messages');
     const message = document.createElement('div');
+    message.classList.add('message', 'received'); // Received messages
     if (event.data instanceof Blob) {
         const text = await event.data.text();
         message.textContent = text;
@@ -19,7 +20,15 @@ socket.addEventListener('message', async function (event) {
 
 document.getElementById('send-button').addEventListener('click', function () {
     const input = document.getElementById('message-input');
-    const message = input.value;
-    socket.send(message);
-    input.value = '';
+    const messageText = input.value;
+
+    if (messageText.trim() === '') return; // Prevent sending empty messages
+
+    socket.send(messageText); // Send message via WebSocket
+    input.value = ''; // Clear input
+});
+
+// Clear Messages
+document.getElementById('clear-button').addEventListener('click', function () {
+    document.getElementById('messages').innerHTML = ''; // Clear all messages
 });
