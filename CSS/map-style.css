@@ -1,0 +1,185 @@
+/* Make sure the whole page uses flexbox for layout */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    background-color: #e5e6e4;
+}
+
+/* Ensure the container fills available space */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styles */
+header {
+    background-color: #0f2044;
+    padding: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo and title alignment */
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    height: 50px; /* Adjust as needed */
+    margin-right: 15px;
+}
+
+.site-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Navbar */
+nav {
+    background-color: #0f2044;
+    text-align: center;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.hero-content {
+    text-align: center; /* Centers text and button */
+    max-width: 800px; /* Ensures content width is not too wide */
+    margin: 0 auto; /* Centers the section */
+    padding: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* MAP STYLING */
+#map {
+    flex: 4; /* Increase the flex value to make the map larger */
+    height: 75vh; /* Adjusts height dynamically */
+    width: 70vw; /* Makes the map wider */
+    max-width: 1400px; /* Prevents overflow */
+    margin: 20px auto; /* Centers the map */
+    border-radius: 12px; /* Smooth rounded corners */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    border: 2px solid #d3d3d3; /* Light gray border for contrast */
+}
+
+/* Map Controls */
+.leaflet-control-zoom {
+    background-color: white !important;
+    border-radius: 8px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Marker Popups */
+.leaflet-popup-content {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Custom Marker Icons */
+.leaflet-marker-icon {
+    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.2)); /* Adds a subtle shadow */
+}
+
+/* Responsive Map Adjustments */
+@media (max-width: 768px) {
+    #map {
+        height: 60vh; /* Reduce height on smaller screens */
+        width: 95vw; /* Make it more mobile-friendly */
+    }
+}
+
+/* Chat Container */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 75vh; /* Match the height of the map */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-left: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Chat Box */
+.chat-window {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ccc;
+}
+
+.message-box {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#send-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #0f2044;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#send-button:hover {
+    background-color: #0d1a36;
+}
+
+/* Footer: Ensuring it stays at the bottom */
+footer {
+    background-color: #0f2044;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
