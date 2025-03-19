@@ -9,7 +9,7 @@
     <meta content="#00008B" data-react-helmet="true" name="theme-color" />
     
     <!-- Google Fonts & Styles -->
-    <link rel="stylesheet" href="/CSS/index-style.css">
+    <link rel="stylesheet" href="index-style.css">
     
     <!-- Scripts -->
     <script src='js/index.js' defer></script>
@@ -30,27 +30,30 @@
                 <h2 class="site-title">UNCG EV’s</h2>
             </div>
         </header>
-        
-
-        <!-- Navbar & Splash Image -->
-        <nav>
-            <ul>
-                <li><a href="/index.html">HOME</a></li>
-                <li><a href="/HTML/map.html">MAP</a></li>
-                <li><a href="/HTML/booking.html">My Booking</a></li>
-            </ul>
-        </nav>
 
         <!-- Main Content -->
         <main class="hero-content">
-            <p class="description">
-                The UNCG EV’s website improves the EV charging experience for faculty, students, 
-                and staff by addressing inefficiencies in the first-come, first-serve system. 
-                It provides real-time charger availability, allows users to book time slots, 
-                and sends reservation notifications. By reducing wait times and optimizing charger use,
-                the website enhances convenience and supports UNCG’s sustainability efforts.
-            </p>        
-            <a href="/HTML/map.html" class="booking-btn">Start Booking</a>
+            <!-- Login Form -->
+            <div id="login-form-container">
+                <h2>Login to UNCG EV’s</h2>
+                <form id="login-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <a href="/welcome.html" class="login-btn">Log In</a>
+                </form>
+                <p id="error-message" style="color: red; display: none;">Invalid username or password.</p>
+            </div>
+
+            <!-- Logout Message -->
+            <div id="logout-message-container" style="display: none;">
+                <h2>You have been logged out.</h2>
+                <p>Thank you for using UNCG EV’s!</p>
+                <button id="login-again-button">Login Again</button>
+            </div>
         </main>
         
     </div>

@@ -7,6 +7,8 @@ html, body {
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
     background-color: #e5e6e4;
+    background: url('../images/campus-splash-overlay0.3.jpg');
+    background-size: cover;
 }
 
 /* Ensure the container fills available space */
@@ -81,95 +83,55 @@ nav ul li a:hover {
     padding: 20px;
 }
 
-.content {
-    display: flex;
-    justify-content: space-between;
-}
+/* Add this to your index-style.css file */
 
-/* MAP STYLING */
-#map {
-    flex: 4; /* Increase the flex value to make the map larger */
-    height: 75vh; /* Adjusts height dynamically */
-    width: 700vw; /* Makes the map wider */
-    max-width: 1400px; /* Prevents overflow */
-    border-radius: 12px; /* Smooth rounded corners */
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-    border: 2px solid #d3d3d3; /* Light gray border for contrast */
-}
-
-/* Map Controls */
-.leaflet-control-zoom {
-    background-color: white !important;
-    border-radius: 8px;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Marker Popups */
-.leaflet-popup-content {
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    color: #333;
-}
-
-/* Custom Marker Icons */
-.leaflet-marker-icon {
-    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.2)); /* Adds a subtle shadow */
-}
-
-/* Responsive Map Adjustments */
-@media (max-width: 768px) {
-    #map {
-        height: 60vh; /* Reduce height on smaller screens */
-        width: 95vw; /* Make it more mobile-friendly */
-    }
-}
-
-/* Chat Container */
-.chat-container {
-    flex: 1;
+.hero-content {
     display: flex;
     flex-direction: column;
-    height: 50vh;
-    border: 1px solid #ccc;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#login-form-container, #logout-message-container {
+    background-color: white;
+    padding: 20px;
     border-radius: 10px;
-    margin-left: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
 }
 
-/* Chat Box */
-.chat-window {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #ccc;
+#login-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
 }
 
-.message-box {
-    display: flex;
+#login-form input {
+    width: 90%;
     padding: 10px;
-    background-color: #fff;
-}
-
-#message-input {
-    flex: 1;
-    padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-right: 10px;
 }
 
-#send-button {
+.login-btn {
+    display: inline-block;
+    text-align: center;
     padding: 10px 20px;
-    border: none;
-    background-color: #0f2044;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: #0f2044; /* Dark blue background */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
-#send-button:hover {
-    background-color: #0d1a36;
+.login-btn:hover {
+    background-color: #0d1a36; /* Darker blue on hover */
 }
 
 /* Footer: Ensuring it stays at the bottom */
