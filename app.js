@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
-const { DateTime } = require("luxon"); // Handles timezone conversion
+const { DateTime } = require("luxon");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,7 +18,7 @@ const pool = new Pool({
     port: process.env.DB_PORT,
 });
 
-// Fetch all chargers
+// ✅ Fetch all chargers
 app.get('/chargers', async (req, res) => {
     try {
         const { rows } = await pool.query('SELECT chargerid, location, status FROM chargers');
@@ -28,45 +28,47 @@ app.get('/chargers', async (req, res) => {
     }
 });
 
-//  Book a charger (Convert EST to UTC before saving)
+// ✅ Book a charger (Handles Time Zones)
 app.post('/reservations', async (req, res) => {
     const { chargerid, starttime, endtime } = req.body;
-
     console.log("Received booking request:", { chargerid, starttime, endtime });
 
     try {
-        // Convert from EST to UTC before storing in PostgreSQL
         const start = DateTime.fromISO(starttime, { zone: "America/New_York" }).toUTC().toISO();
         const end = DateTime.fromISO(endtime, { zone: "America/New_York" }).toUTC().toISO();
 
-        // Check if charger exists
         const checkCharger = await pool.query('SELECT status FROM chargers WHERE chargerid = $1', [chargerid]);
         if (checkCharger.rows.length === 0) {
             return res.status(404).json({ message: "Charger not found." });
         }
 
-        if (checkCharger.rows[0].status !== 'Available') {
-            return res.status(400).json({ message: "Charger is already in use." });
+        // ✅ Ensure charger isn't already booked during this time
+        const conflict = await pool.query(`
+            SELECT * FROM reservations 
+            WHERE chargerid = $1 AND (
+                (starttime < $3 AND endtime > $2)
+            )
+        `, [chargerid, start, end]);
+
+        if (conflict.rows.length > 0) {
+            return res.status(400).json({ message: "This charger is already booked at the selected time." });
         }
 
-        // Insert reservation with UTC time
         await pool.query(
             'INSERT INTO reservations (chargerid, starttime, endtime) VALUES ($1, $2, $3)',
             [chargerid, start, end]
         );
 
-        await pool.query('UPDATE chargers SET status = $1 WHERE chargerid = $2', ['In Use', chargerid]);
-
-        console.log(" Booking stored in UTC successfully!");
+        console.log("✅ Booking stored successfully!");
         res.status(201).json({ message: "Charger booked successfully!" });
 
     } catch (err) {
-        console.error("Error booking charger:", err);
+        console.error("❌ Error booking charger:", err);
         res.status(500).json({ message: "Internal server error", error: err.message });
     }
 });
 
-//  Fetch all reservations with charger names
+// ✅ Fetch all reservations with charger names
 app.get('/reservations', async (req, res) => {
     try {
         const { rows } = await pool.query(`
@@ -74,44 +76,21 @@ app.get('/reservations', async (req, res) => {
             FROM reservations r 
             JOIN chargers c ON r.chargerid = c.chargerid
         `);
-
-        console.log(" Sent Reservations Data:", rows); // Debugging
         res.json(rows);
     } catch (err) {
-        console.error("Error fetching reservations:", err);
         res.status(500).json({ error: err.message });
     }
 });
-
-
 
 // ✅ Cancel a booking
 app.delete('/reservations/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        // Get charger ID before deleting
-        const reservation = await pool.query('SELECT chargerid FROM reservations WHERE reservationid = $1', [id]);
-        if (reservation.rows.length === 0) {
-            return res.status(404).json({ message: "Reservation not found." });
-        }
-
-        const chargerid = reservation.rows[0].chargerid;
-
-        // Delete the reservation
         await pool.query('DELETE FROM reservations WHERE reservationid = $1', [id]);
-
-        // Check if this was the only reservation for this charger
-        const otherReservations = await pool.query('SELECT * FROM reservations WHERE chargerid = $1', [chargerid]);
-        if (otherReservations.rows.length === 0) {
-            await pool.query('UPDATE chargers SET status = $1 WHERE chargerid = $2', ['Available', chargerid]);
-        }
-
-        console.log(`✅ Reservation ${id} canceled. Charger ${chargerid} is now available.`);
-        res.json({ message: "Reservation canceled, charger is now available." });
+        res.json({ message: "Reservation canceled." });
 
     } catch (err) {
-        console.error("❌ Error canceling reservation:", err);
         res.status(500).json({ message: "Internal server error", error: err.message });
     }
 });
@@ -119,3 +98,49 @@ app.delete('/reservations/:id', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+// ✅ Update an existing reservation
+// ✅ Update an existing reservation
+// ✅ Update an existing reservation
+app.put('/reservations/:id', async (req, res) => {
+    const { id } = req.params;
+    const { chargerid, starttime, endtime } = req.body;
+
+    try {
+        // Check if reservation exists
+        const checkReservation = await pool.query('SELECT * FROM reservations WHERE reservationid = $1', [id]);
+        if (checkReservation.rows.length === 0) {
+            return res.status(404).json({ message: "Booking not found." });
+        }
+
+        // Convert from EST to UTC
+        const start = DateTime.fromISO(starttime, { zone: "America/New_York" }).toUTC().toISO();
+        const end = DateTime.fromISO(endtime, { zone: "America/New_York" }).toUTC().toISO();
+
+        // ✅ Check for conflicts before updating
+        const conflict = await pool.query(`
+            SELECT * FROM reservations
+            WHERE chargerid = $1 AND reservationid != $2
+              AND ((starttime < $3 AND endtime > $2))
+        `, [chargerid, id, start, end]);
+
+        if (conflict.rows.length > 0) {
+            return res.status(400).json({ message: "This time slot is already booked." });
+        }
+
+        // ✅ Update reservation
+        await pool.query(
+            'UPDATE reservations SET chargerid = $1, starttime = $2, endtime = $3 WHERE reservationid = $4',
+            [chargerid, start, end, id]
+        );
+
+        res.json({ message: "Booking updated successfully!" });
+    } catch (err) {
+        console.error("❌ Error updating booking:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
+
+
+

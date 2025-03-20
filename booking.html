@@ -3,60 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - UNCG EV’s</title>
+    <title>Book a Charging Station - UNCG EV’s</title>
     <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@700;500&display=swap' rel='stylesheet'>
     <link rel="stylesheet" href="booking-style.css">
 </head>
-
 <body>
+
 <div class="container">
     <header>
-        <img id="logo" src="images/uncg_hrzntl-svg.png" alt="UNCG Logo">
         <h2 class="site-title">UNCG EV’s</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="booking.html">MY BOOKING</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="map.html">MAP</a></li>
-            <li><a href="booking.html">My Booking</a></li>
-        </ul>
-    </nav>
+
     <main>
         <h2>Book a Charging Station</h2>
 
-        <label for="chargerSelect">Select a Charger:</label>
-        <select id="chargerSelect"></select>
+        <div class="booking-instructions">
+            <p><strong>Step 1:</strong> Select a charging station.</p>
+            <p><strong>Step 2:</strong> Available time slots will appear.</p>
+            <p><strong>Step 3:</strong> Select your start and end time.</p>
+            <p><strong>Step 4:</strong> Click <strong>Book Now</strong> to confirm.</p>
+        </div>
 
-        <label for="bookingDate">Select Date:</label>
-        <input type="date" id="bookingDate">
+        <div class="booking-form">
+            <label for="bookingDate"><strong>Select Date:</strong></label>
+            <input type="date" id="bookingDate" required>
 
-        <label for="startTime">Select Start Time:</label>
-        <select id="startTime"></select>
+            <label for="chargerSelect"><strong>Choose a Charging Station:</strong></label>
+            <select id="chargerSelect">
+                <option value="">Loading stations...</option>
+            </select>
 
-        <label for="endTime">Select End Time:</label>
-        <select id="endTime"></select>
+            <label for="startTime"><strong>Select Start Time:</strong></label>
+            <select id="startTime" disabled>
+                <option value="">Select a station first</option>
+            </select>
 
-        <button id="bookStationBtn" onclick="submitBooking()">Book Now</button>
+            <label for="endTime"><strong>Select End Time:</strong></label>
+            <select id="endTime" disabled>
+                <option value="">Select a start time first</option>
+            </select>
+
+            <button id="bookNowBtn" onclick="submitBooking()">Book Now</button>
+        </div>
 
         <h2>My Bookings</h2>
         <table id="bookingTable">
             <thead>
             <tr>
                 <th>Date</th>
-                <th>Start Time - End Time</th>
-                <th>Location</th>
+                <th>Time</th>
+                <th>Charging Station</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <!-- Booking entries will be dynamically inserted here -->
             </tbody>
         </table>
     </main>
+
     <footer>
-        <p>&copy; UNCG EV’s</p>
+        <p>© UNCG EV’s</p>
     </footer>
 </div>
+
+<!-- ✅ Edit Booking Modal -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <h2>Edit Booking</h2>
+
+        <label for="editChargerSelect">Charging Station:</label>
+        <select id="editChargerSelect"></select>
+
+        <label for="editBookingDate">Date:</label>
+        <input type="date" id="editBookingDate">
+
+        <label for="editStartTime">Start Time:</label>
+        <select id="editStartTime"></select>
+
+        <label for="editEndTime">End Time:</label>
+        <select id="editEndTime"></select>
+
+        <button id="editBookingBtn">Update Booking</button>
+        <button onclick="closeEditModal()">Cancel</button>
+    </div>
+</div>
+
 <script src="booking.js"></script>
 </body>
 </html>
