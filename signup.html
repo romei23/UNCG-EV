@@ -9,7 +9,7 @@
     <meta content="#00008B" data-react-helmet="true" name="theme-color" />
     
     <!-- Google Fonts & Styles -->
-    <link rel="stylesheet" href="index-style.css">
+    <link rel="stylesheet" href="signup-style.css">
     
     <!-- Scripts -->
     <script src='js/index.js' defer></script>
@@ -33,22 +33,24 @@
 
         <!-- Main Content -->
         <main class="hero-content">
-            <!-- Login Form -->
-            <div id="login-form-container">
-                <h2>Login to UNCG EV’s</h2>
-                <form id="login-form">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    
+            <div id="signup-form-container">
+                <h2>Create an Account</h2>
+                <form id="signup-form">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-                    
-                    <a href="/welcome.html" class="login-btn">Log In</a>
-                    <p>Don't have an account? <a href="/signup.html">Sign up here</a>.</p>
+
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+
+                    <button type="submit" class="signup-btn">Sign Up</button>
                 </form>
+                <p id="error-message" style="color: red; display: none;">Passwords do not match.</p>
+                <p>Already have an account? <a href="/index.html">Log in here</a>.</p>
             </div>
         </main>
-        
     </div>
 
     <footer>

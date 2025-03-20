@@ -9,7 +9,7 @@ const wss = new WebSocket.Server({ noServer: true });
 wss.on('connection', socket => {
     socket.on('message', message => {
         const timestamp = new Date().toLocaleString(); // Get the current date and time
-        const messageWithTimestamp = `${message}    -${timestamp}`;
+        const messageWithTimestamp = `${message}    [${timestamp}]`;
 
         // Broadcast the message with the timestamp to all connected clients
         wss.clients.forEach(client => {
