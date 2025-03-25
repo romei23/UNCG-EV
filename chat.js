@@ -1,32 +1,47 @@
-const socket = new WebSocket('ws://localhost:3000');
+document.addEventListener('DOMContentLoaded', function () {
+    const socket = new WebSocket('ws://localhost:3000');
 
-socket.addEventListener('open', function () {
-    console.log('Connected to WebSocket server.');
-});
+    socket.addEventListener('open', function () {
+        console.log('Connected to WebSocket server.');
+    });
 
-socket.addEventListener('message', function (event) {
-    const messages = document.getElementById('messages');
-    const messageContainer = document.createElement('div');
-    messageContainer.classList.add('message', 'received'); // Received messages
-    messageContainer.innerHTML = `${event.data}<br>`; // Add a break line after the message
+    socket.addEventListener('message', function (event) {
+        const messages = document.getElementById('messages');
 
-    messages.appendChild(messageContainer);
-});
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message', 'received');
 
-document.getElementById('send-button').addEventListener('click', function () {
-    const input = document.getElementById('message-input');
-    const messageText = input.value;
+        const timestamp = new Date().toLocaleString();
+        messageContainer.innerHTML = `
+            <div>${event.data}</div>
+            <span class="timestamp">${timestamp}</span>
+        `;
 
-    if (messageText.trim() === '') return; // Prevent sending empty messages
+        messages.appendChild(messageContainer);
+        messages.scrollTop = messages.scrollHeight;
+    });
 
-    // Send the message via WebSocket
-    socket.send(messageText);
+    document.getElementById('send-button').addEventListener('click', function () {
+        const input = document.getElementById('message-input');
+        const messageText = input.value;
 
-    // Clear the input field
-    input.value = '';
-});
+        if (messageText.trim() === '') return;
 
-// Clear Messages
-document.getElementById('clear-button').addEventListener('click', function () {
-    document.getElementById('messages').innerHTML = ''; // Clear all messages
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(messageText); 
+            input.value = '';
+        } else {
+            alert("WebSocket not connected.");
+        }
+    });
+
+    document.getElementById('clear-button').addEventListener('click', function () {
+        document.getElementById('messages').innerHTML = '';
+    });
+
+    document.getElementById('message-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            document.getElementById('send-button').click();
+        }
+    });
 });

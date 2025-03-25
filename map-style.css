@@ -9,6 +9,15 @@ html, body {
     overflow: auto;
 }
 
+/* Smooth page transitions */
+body {
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
 /* Ensure the container fills available space */
 .container {
     flex: 1;
@@ -162,6 +171,16 @@ nav ul li a:hover {
 
 #send-button:hover {
     background-color: #0d1a36;
+}
+
+/* Button hover effects */
+button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 /* Footer: Ensuring it stays at the bottom */
