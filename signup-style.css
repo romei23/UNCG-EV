@@ -1,146 +1,113 @@
-/* Make sure the whole page uses flexbox for layout */
+/* Reset & layout */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
-    background-color: #e5e6e4;
-    background: url('../images/campus-splash-overlay0.3.jpg');
+    background: url('../images/campus-splash-overlay0.3.jpg') no-repeat center center;
     background-size: cover;
-}
-
-/* Ensure the container fills available space */
-.container {
+  }
+  
+  .container {
     flex: 1;
     display: flex;
     flex-direction: column;
-}
-
-/* Header styles */
-header {
+  }
+  
+  /* Header */
+  header {
     background-color: #0f2044;
     padding: 15px;
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-/* Logo and title alignment */
-.header-container {
+  }
+  
+  .header-container {
     display: flex;
     align-items: center;
-}
-
-#logo {
-    height: 50px; /* Adjust as needed */
+  }
+  
+  #logo {
+    height: 50px;
     margin-right: 15px;
-}
-
-.site-title {
+  }
+  
+  .site-title {
     font-size: 22px;
     font-weight: bold;
-}
-
-/* Navbar */
-nav {
-    background-color: #0f2044;
-    text-align: center;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Main Content */
-.hero-content {
-    text-align: center; /* Centers text and button */
-    max-width: 800px; /* Ensures content width is not too wide */
-    margin: 0 auto; /* Centers the section */
-    padding: 20px;
-}
-
-/* Add this to your index-style.css file */
-
-.hero-content {
+  }
+  
+  /* Content Centering */
+  .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-}
-
-#signup-form-container, #signup-message-container {
+    text-align: center;
+  }
+  
+  /* Signup Box */
+  #signup-form-container {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 400px;
-}
-
-#signup-form label {
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+  }
+  
+  /* Labels & Inputs */
+  #signup-form label {
     display: block;
     margin-bottom: 5px;
     text-align: left;
-}
-
-#signup-form input {
-    width: 90%;
-    padding: 10px;
+  }
+  
+  #signup-form input {
+    width: 100%;
+    padding: 12px 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-.signup-btn {
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  /* Sign Up Button */
+  .signup-btn {
     display: inline-block;
     text-align: center;
     padding: 10px 20px;
-    background-color: #0f2044; /* Dark blue background */
-    color: white; /* White text */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    font-weight: bold; /* Bold text */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-.signup-btn:hover {
-    background-color: #0d1a36; /* Darker blue on hover */
-}
-
-/* Footer: Ensuring it stays at the bottom */
-footer {
+    background-color: #0f2044;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .signup-btn:hover {
+    background-color: #0d1a36;
+  }
+  
+  /* Footer */
+  footer {
     background-color: #0f2044;
     color: white;
     text-align: center;
     padding: 10px;
     width: 100%;
-    position: relative;
-    bottom: 0;
-}
+  }
+  
