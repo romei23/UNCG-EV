@@ -37,7 +37,7 @@ var chargers = [
         name: "Sullivan Science Parking Lot",
         lat: 36.0675,
         lng: -79.8102,
-        status: "maintenance",
+        status: "available",
         image: "images/sullivan.jpg"
     }
 ];
@@ -68,7 +68,7 @@ const chargerIcons = {
         popupAnchor: [0, -35]
     }),
     maintenance: L.icon({
-        iconUrl: 'images/maintanence.png',
+        iconUrl: 'images/available.png',
         iconSize: [40, 40],
         iconAnchor: [20, 40],
         popupAnchor: [0, -35]
@@ -91,36 +91,28 @@ chargers.forEach(station => {
                         style="margin:3px; padding:5px 10px; background:#0f2044; color:white; border:none; cursor:pointer;">
                         Get Directions
                     </button>
-                    <button onclick="bookStation(${station.id})" 
+                    <button onclick="navigateToBooking(${station.id})" 
                         style="margin:3px; padding:5px 10px; background:#2d7f2d; color:white; border:none; cursor:pointer;">
                         Book Now
                     </button>
-                    <button onclick="reportIssue(${station.id})" 
+                    <button onclick="navigateToReportIssue(${station.id})" 
                         style="margin:3px; padding:5px 10px; background:#a32020; color:white; border:none; cursor:pointer;">
                         Report Issue
                     </button>
                 </div>
             </div>
-        `)
-        
+        `);
 });
 
+// Navigate to the booking page with the station ID as a query parameter
+function navigateToBooking(stationId) {
+    window.location.href = `booking.html?stationId=${stationId}`;
+}
 
-// Smooth page transitions
-document.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.remove('fade-out');
-});
-
-document.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', event => {
-        event.preventDefault();
-        const href = event.target.href;
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-            window.location.href = href;
-        }, 500);
-    });
-});
+// Navigate to the report issue page with the station ID as a query parameter
+function navigateToReportIssue(stationId) {
+    window.location.href = `issue_report.html?stationId=${stationId}`;
+}
 
 // WebSocket for real-time charger updates
 const socket = new WebSocket('ws://localhost:3000');
