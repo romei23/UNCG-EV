@@ -1,62 +1,43 @@
-/* Make sure the whole page uses flexbox for layout */
-html, body {
-    height: 100%;
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('/images/campus-splash-overlay0.3.jpg')no-repeat center center fixed;
+    background-size: cover;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Poppins', sans-serif;
-    background-color: #e5e6e4;
-    background: url('images/campus-splash-overlay0.3.jpg');
-    ;
 }
 
-/* Ensure the container fills available space */
 .container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Header styles */
+/* Header */
 header {
     background-color: #0f2044;
     padding: 15px;
+    text-align: center;
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Logo and title alignment */
-.header-container {
-    display: flex;
-    align-items: center;
 }
 
 #logo {
-    height: 50px; /* Adjust as needed */
-    margin-right: 15px;
+    height: 50px;
+    display: block;
+    margin: auto;
 }
 
-.site-title {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-/* Navbar */
 nav {
     background-color: #0f2044;
+    padding: 10px;
     text-align: center;
-    padding: 10px 0;
 }
 
 nav ul {
     list-style: none;
-    margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
 }
 
 nav ul li {
@@ -65,85 +46,117 @@ nav ul li {
 }
 
 nav ul li a {
-    text-decoration: none;
     color: white;
-    font-size: 16px;
+    text-decoration: none;
     font-weight: bold;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+/* Booking Instructions */
+.booking-instructions {
+    background-color: #e8f4ff;
+    border-left: 4px solid #00529b;
+    padding: 10px;
+    margin-bottom: 15px;
 }
 
-/* Main Content */
-.hero-content {
-    text-align: center; /* Centers text and button */
-    max-width: 800px; /* Ensures content width is not too wide */
-    margin: 0 auto; /* Centers the section */
-    padding: 20px;
+/* Form Styling */
+form {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer: Ensuring it stays at the bottom */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #00529b;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #003c70;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #00529b;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Footer */
 footer {
     background-color: #0f2044;
     color: white;
     text-align: center;
     padding: 10px;
+    margin-top: 20px;
+}
+/* ✅ Style for Edit Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
     width: 100%;
-    position: relative;
-    bottom: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Booking Table Styling */
-#bookingTable {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
+.modal-content {
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
     border-radius: 10px;
-    overflow: hidden;
 }
 
-#bookingTable th, #bookingTable td {
-    padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-#bookingTable th {
-    background-color: #0f2044;
+.modal-content button {
+    background-color: #00529b;
     color: white;
-}
-
-#bookingTable tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Button Styling */
-.edit-btn, .delete-btn {
-    padding: 8px 12px;
+    padding: 10px;
     border: none;
     cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
+    margin-right: 10px;
 }
 
-.edit-btn {
-    background-color: #fbbc04;
-    color: black;
+.modal-content button:hover {
+    background-color: #003f7f;
 }
-
-.delete-btn {
-    background-color: #d93025;
-    color: white;
+option:disabled {
+    color: red !important;
+    font-weight: bold;
 }
-
-.edit-btn:hover {
-    background-color: #e0a800;
-}
-
-.delete-btn:hover {
-    background-color: #c82333;
-}
-
